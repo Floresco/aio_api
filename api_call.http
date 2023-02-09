@@ -1,0 +1,61 @@
+### Client Register
+POST {{host}}/client/register
+Content-Type: application/json
+
+{
+    "phone": "12457898",
+    "email": "clientserieux@gmail.com",
+    "password": {{password}},
+    "firstname": "Client",
+    "lastname": "Serieux",
+    "gender": "M"
+}
+
+###> {% client.global.set("token", response.body.json.token); %}
+
+
+### Client Login
+POST {{host}}/client/login
+Content-Type: application/json
+
+{
+    "email": "clientserieux@gmail.com",
+    "password": {{password}}
+}
+
+###> {% client.global.set("token", response.body.json.token); %}
+
+### Admin Register
+POST {{host}}/admin/register
+Content-Type: application/json
+
+{
+    "phone": "12326545",
+    "email": "adminserieuse@gamil.com",
+    "password": {{password}},
+    "firstname": "Admin",
+    "lastname": "Serieuse",
+    "gender": "F"
+}
+
+###> {% client.global.set("token", response.body.json.token); %}
+
+
+### Admin Login
+POST {{host}}/admin/login
+Content-Type: application/json
+
+{
+    "email": "adminserieuse@gamil.com",
+    "password": {{password}}
+}
+
+###> {% client.global.set("token", response.body.json.token); %}
+
+
+
+### GET user info
+GET {{host}}
+Authorization: Bearer {{token}}
+
+###
