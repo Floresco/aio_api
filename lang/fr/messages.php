@@ -1,6 +1,7 @@
 <?php
 return [
     'welcome' => 'Bienvenue',
+    'bye' => 'Au revoir',
     'projet_mtitle' => 'BNDA CALL',
     'smprojet_title' => 'BNDA CALL - MANAGER',
     'projet_title' => 'BNDA CALL - MANAGER',

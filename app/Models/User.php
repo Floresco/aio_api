@@ -51,8 +51,4 @@ class User extends Authenticatable
         'updated_at' => 'datetime'
     ];
 
-    public function userProfil(): BelongsTo
-    {
-        return $this->belongsTo(UserProfil::class);
-    }
 }

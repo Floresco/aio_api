@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Helpers\CodeStatus;
-use App\Models\users\User;
-use App\Models\users\UserProfil;
+use App\Models\User;
+use App\Models\v1\Admin\users\User as AdminUser;
+use App\Models\v1\Client\users\User as ClientUser;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -16,25 +16,42 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $super_admin_profil = UserProfil::query()->where('name', CodeStatus::USER_PROFIL_SUPER_ADMIN)->first();
+        $super_admin_email = 'super.admin@project.com';
+        $admin_email = 'admin@project.com';
+        $user_email = 'user@project.com';
 
-        $data = [
-            'user1' => [
+        $check_super_admin_user = User::where('email', '=', $super_admin_email)->count();
+        $check_admin_user = User::where('email', '=', $super_admin_email)->count();
+        $check_user = ClientUser::where('email', '=', $user_email)->count();
+
+        if ($check_super_admin_user == 0) {
+            $user = User::create([
                 'phone' => '11223344',
-                'email' => 'super.admin@project.com',
+                'email' => $super_admin_email,
                 'password' => \Hash::make('Azerty123'),
-                'user_profil_id' => $super_admin_profil?->id ?? null,
-                'user_parent_id' => 0,
-            ],
-        ];
-
-        \Schema::disableForeignKeyConstraints();
-        User::query()->truncate();
-        foreach ($data as $user) {
-            $test_user = User::query()->where('phone', $user['phone'])->where('email', $user['email'])->first();
-            if ($test_user == null)
-                User::query()->create($user);
+                'is_admin' => 1,
+                'is_customer' => 0,
+            ]);
+            \Bouncer::assign('superadmin')->to($user);
         }
-        \Schema::enableForeignKeyConstraints();
+
+        if ($check_admin_user == 0) {
+            $user = AdminUser::create([
+                'phone' => '22334455',
+                'email' => $admin_email,
+                'password' => \Hash::make('Azerty123')
+            ]);
+            \Bouncer::assign('admin')->to($user);
+        }
+
+        if ($check_user == 0) {
+            $user = ClientUser::create([
+                'phone' => '33445566',
+                'email' => $user_email,
+                'password' => \Hash::make('Azerty123')
+            ]);
+            \Bouncer::assign('user')->to($user);
+        }
+
     }
 }

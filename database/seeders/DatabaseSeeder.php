@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\users\AccessRight;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(AccessRightSeeder::class);
-        $this->call(UserProfilSeeder::class);
+        $this->call(BouncerSeeder::class);
+        sleep(5);
         $this->call(UserSeeder::class);
     }
 }

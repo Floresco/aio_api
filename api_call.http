@@ -19,7 +19,7 @@ POST {{host}}/client/login
 Content-Type: application/json
 
 {
-    "email": "clientserieux@gmail.com",
+    "phone_email": "clientserieux@gmail.com",
     "password": {{password}}
 }
 
@@ -44,18 +44,18 @@ Content-Type: application/json
 ### Admin Login
 POST {{host}}/admin/login
 Content-Type: application/json
+Accept-Language: 'fr'
 
 {
-    "email": "adminserieuse@gamil.com",
-    "password": {{password}}
+    "phone_email": "super.admin@project.com",
+    "password": "Azerty123"
 }
 
-###> {% client.global.set("token", response.body.json.token); %}
-
+> {% client.global.set("token", response.body.data.token); %}
 
 
 ### GET user info
-GET {{host}}
+GET {{host}}/admin/user
 Authorization: Bearer {{token}}
 
 ###

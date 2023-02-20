@@ -2,12 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Models\users\AccessRight;
-use App\Models\users\ProfilAccess;
-use Illuminate\Contracts\Foundation\Application;
+use App\Models\v1\Admin\users\ProfilAccess;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Utils
 {

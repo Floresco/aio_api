@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->foreignUuid('country_id')->references('id')->on('countries')->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('status')->default(true);
-            $table->uuid('id_user_create')->nullable();
-            $table->uuid('id_user_update')->nullable();
+            $table->uuid('created_by');
+            $table->uuid('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
